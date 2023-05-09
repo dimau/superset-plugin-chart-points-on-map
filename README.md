@@ -1,6 +1,8 @@
 # superset-plugin-chart-points-on-map
 
-This is the Superset Plugin Chart Points On Map Superset Chart Plugin.
+This is the Superset Plugin Chart Points On Map
+
+![How it looks in Chart constructor](https://github.com/dimau/superset-plugin-chart-points-on-map/assets/1804537/b0d843fc-1a80-4a17-abbc-2aa2ea8f6dfb)
 
 ### Usage
 
