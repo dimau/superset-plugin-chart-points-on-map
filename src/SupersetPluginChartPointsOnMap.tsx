@@ -1,39 +1,15 @@
 import React from 'react';
 import {styled} from '@superset-ui/core';
 import {SupersetPluginChartPointsOnMapProps, SupersetPluginChartPointsOnMapStylesProps} from './types';
-import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
+import {MapContainer, Marker, TileLayer} from "react-leaflet";
 import markerIconImg from "./images/leaflet-images/marker-icon.png";
 import shadowIconImg from "./images/leaflet-images/marker-shadow.png";
 import { Icon } from "leaflet";
 
-// The following Styles component is a <div> element, which has been styled using Emotion
-// For docs, visit https://emotion.sh/docs/styled
-
-// Theming variables are provided for your use via a ThemeProvider
-// imported from @superset-ui/core. For variables available, please visit
-// https://github.com/apache-superset/superset-ui/blob/master/packages/superset-ui-core/src/style/index.ts
-
 const Styles = styled.div<SupersetPluginChartPointsOnMapStylesProps>`
-  background-color: ${({theme}) => theme.colors.secondary.light2};
-  padding: ${({theme}) => theme.gridUnit * 4}px;
-  border-radius: ${({theme}) => theme.gridUnit * 2}px;
   height: ${({height}) => height}px;
   width: ${({width}) => width}px;
-
-  h3 {
-    /* You can use your props to control CSS! */
-    margin-top: 0;
-    margin-bottom: ${({theme}) => theme.gridUnit * 3}px;
-    font-size: ${({theme, headerFontSize}) => theme.typography.sizes[headerFontSize]}px;
-    font-weight: ${({theme, boldText}) => theme.typography.weights[boldText ? 'bold' : 'normal']};
-  }
-
-  pre {
-    height: ${({theme, headerFontSize, height}) => (
-            height - theme.gridUnit * 12 - theme.typography.sizes[headerFontSize]
-    )}px;
-  }
-
+  
   /* required styles */
   .leaflet-pane,
   .leaflet-tile,
@@ -825,8 +801,6 @@ const markerIcon = new Icon({
 export default function SupersetPluginChartPointsOnMap(props: SupersetPluginChartPointsOnMapProps) {
   const {data, height, width, longitude, latitude} = props;
 
-  // console.log('Plugin props', props);
-
   return (
       <Styles
           boldText={props.boldText}
@@ -834,19 +808,11 @@ export default function SupersetPluginChartPointsOnMap(props: SupersetPluginChar
           height={height}
           width={width}
       >
-        {/*<h3>{props.headerText}</h3>*/}
-        {/*<pre>${JSON.stringify(data, null, 2)}</pre>*/}
-
-        <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+        <MapContainer center={[37.7690928, -122.3912672]} zoom={13} scrollWheelZoom={false}>
           <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={[51.505, -0.09]} icon={markerIcon}>
-            <Popup>
-              A pretty CSS3 popup. <br/> Easily customizable.
-            </Popup>
-          </Marker>
           {data !== null && data.map(item => {
             if (!item || !longitude || !latitude || !Number(item[latitude]) || !Number(item[longitude])) return;
             const x = Number(item[latitude]);
