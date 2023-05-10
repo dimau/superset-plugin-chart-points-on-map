@@ -1,0 +1,10 @@
+.idea/
+node_modules/
+src/
+test/
+types/
+babel.config.js
+jest.config.js
+package-lock.json
+tsconfig.json
+tsconfig.tsbuildinfo
